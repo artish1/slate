@@ -262,7 +262,7 @@ example for registration:
 <p>Example header:
 <code>Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p>
 
-<p>Protected API routes that require authentication will throw a 401 error followed with a message &quot;Invalid Token&quot;.</p>
+<p>Protected API routes that require authentication and the authorization header is not present, it will throw a 401 error followed with a message &quot;Invalid Token&quot;.</p>
 
 <aside class="notice">
 Do not use the token in the example.
@@ -293,9 +293,7 @@ Do not use the token in the example.
   </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fitness_dood_7"</span><span class="p">,</span><span class="w"> </span><span class="err">//username</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">registered</span><span class="w"> </span><span class="err">with.</span><span class="w">
   </span><span class="s2">"role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">//The</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">role</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">user.</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">instructor</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">client.</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /auth/register</code></p>
 <h3 id='json-request-body'>JSON request body</h3>
 <table><thead>
@@ -369,9 +367,13 @@ Do not use the token in the example.
 <td>The password to login with</td>
 </tr>
 </tbody></table>
+
+<aside class="success">
+/auth/login is up and running. 
+</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+    This is just a quick list of HTTP error codes that the API may return.
 </aside>
 
 <p>The Kittn API uses the following error codes:</p>
@@ -388,39 +390,23 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized -- Your Authorization header is invalid or not present.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- Must require specific access.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>Not Found -- The requested resource was not found</td>
 </tr>
 <tr>
 <td>418</td>
 <td>I&#39;m a teapot.</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- We had a problem with our server. Contact Mark Artishuk</td>
 </tr>
 <tr>
 <td>503</td>
