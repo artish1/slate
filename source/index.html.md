@@ -33,7 +33,7 @@ Anywhere Fitness API requires a register/login process that will return a `token
 Example header:
 `Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
 
-Protected API routes that require authentication will throw a 401 error followed with a message "Invalid Token".
+Protected API routes that require authentication and the authorization header is not present, it will throw a 401 error followed with a message "Invalid Token".
 
 <aside class="notice">
 Do not use the token in the example.
@@ -72,8 +72,6 @@ axios
   "role_id": 2 //The id of the role of the user. 2 is instructor, 1 is client.
 }
 ```
-
-This endpoint retrieves all kittens.
 
 ### HTTP Request
 
@@ -133,3 +131,7 @@ This endpoint logs the user in on correct credentials.
 | -------- | -------------------------- |
 | username | The username to login with |
 | password | The password to login with |
+
+<aside class="success">
+/auth/login is up and running. 
+</aside>
