@@ -1,14 +1,11 @@
 ---
-title: API Reference
+title: Anywhere Fitness API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,221 +16,120 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Anywhere Fitness API Docs.
+Docs are powered by [Slate](https://github.com/lord/slate)
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Please talk to Mark Artishuk for any questions, comments, bugs, or feature requests that concern the API
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The hosted base URL for the api is: `https://www.example.com`
+Use this URL as a base for all routes,
+example for registration:
+`POST https://www.example.com/auth/register/`
 
 # Authentication
 
-> To authorize, use this code:
+Anywhere Fitness API requires a register/login process that will return a `token` to be used in the Authorization header.
 
-```ruby
-require 'kittn'
+Example header:
+`Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Protected API routes that require authentication will throw a 401 error followed with a message "Invalid Token".
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Do not use the token in the example.
 </aside>
 
-# Kittens
+# Users
 
-## Get All Kittens
+## Registration
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+This endpoint is used for registration.
 
 ```javascript
-const kittn = require('kittn');
+const axios = require("axios");
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+const body = {
+  username: "fitness_dood_7",
+  password: "doyouevenliftbro?",
+  isInstructor: true
+};
+axios
+  .post("/auth/register", body)
+  .then(res => {
+    //Handle successful registration.
+  })
+  .catch(err => {
+    //Handle unsuccessful registration.
+  });
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "id": 3, //The user ID
+  "username": "fitness_dood_7", //username that was registered with.
+  "role_id": 2 //The id of the role of the user. 2 is instructor, 1 is client.
+}
 ```
 
 This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST /auth/register`
 
-### Query Parameters
+### JSON request body
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+| Field        | Example Value     | Description                                                                 |
+| ------------ | ----------------- | --------------------------------------------------------------------------- |
+| username     | fitness_dood_7    | The username to register with                                               |
+| password     | doyouevenliftbro? | The password to register with                                               |
+| isInstructor | true              | A true/false representation if the registered user is an instructor or not. |
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+/auth/register is up and running. 
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+## Logging In
 
 ```javascript
-const kittn = require('kittn');
+const axios = require("axios");
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+const body = {
+  username: "fitness_dood_7",
+  password: "doyouevenliftbro?"
+};
+axios
+  .post("/auth/login", body)
+  .then(res => {
+    const token = res.data.token; //Token that was returned.
+  })
+  .catch(err => {
+    //Handle errors/unsuccessful login.
+  });
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "message": "Welcome! here's your token",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint logs the user in on correct credentials.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+<aside class="warning">Do not use the token returned in the example JSON.</aside>
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST /auth/login`
 
-### URL Parameters
+### JSON Body Fields
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+| Field    | Description                |
+| -------- | -------------------------- |
+| username | The username to login with |
+| password | The password to login with |
