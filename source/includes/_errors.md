@@ -4,7 +4,7 @@
     This is just a quick list of HTTP error codes that the API may return.
 </aside>
 
-The Kittn API uses the following error codes:
+The Anywhere Fitness API uses the following error codes:
 
 | Error Code | Meaning                                                                                   |
 | ---------- | ----------------------------------------------------------------------------------------- |

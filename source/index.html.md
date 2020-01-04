@@ -45,6 +45,8 @@ Do not use the token in the example.
 
 This endpoint is used for registration.
 
+> Example Javascript code using axios:
+
 ```javascript
 const axios = require("axios");
 
@@ -63,7 +65,7 @@ axios
   });
 ```
 
-> The above command returns JSON structured like this:
+> Example JSON return body:
 
 ```json
 {
@@ -91,6 +93,8 @@ axios
 
 ## Logging In
 
+> Example Javascript code using axios:
+
 ```javascript
 const axios = require("axios");
 
@@ -108,7 +112,7 @@ axios
   });
 ```
 
-> The above command returns JSON structured like this:
+> Example JSON return body:
 
 ```json
 {
@@ -118,8 +122,6 @@ axios
 ```
 
 This endpoint logs the user in on correct credentials.
-
-<aside class="warning">Do not use the token returned in the example JSON.</aside>
 
 ### HTTP Request
 
@@ -134,4 +136,171 @@ This endpoint logs the user in on correct credentials.
 
 <aside class="success">
 /auth/login is up and running. 
+</aside>
+
+# Classes
+
+<aside class="notice">All class endpoints require Authorization</aside>
+
+Some class endpoints require the user to be an instructor.
+
+The token provided has all the information on the user accessing this route, so it will know if the user is an instructor or not.
+
+If a non-instructor tries to access an instructor-only endpoint, it will throw a 403 Forbidden error code.
+
+## Create a Class
+
+> Example request body:
+
+```json
+{
+  "name": "Fat 2 Fit",
+  "type": "Cardio",
+  "startTime": "2020-01-13T16:30:00.000Z",
+  "duration": "1h",
+  "intensity": 8,
+  "location": "San Francisco",
+  "maxSize": 10
+}
+```
+
+> Example return body:
+
+```json
+{
+  "id": 5,
+  "instructor_id": 3,
+  "name": "Fat2222 2 Fit",
+  "type": "Cardio",
+  "startTime": "2020-01-13T16:30:00.000Z",
+  "duration": "1h",
+  "intensity": 8,
+  "location": "San Francisco",
+  "maxSize": 10
+}
+```
+
+<aside class="notice">Authorized user must also be an instructor</aside>
+
+### HTTP Request
+
+`POST /classes`
+
+### JSON Body Fields
+
+| Field     | Example Value            | Description                                                                               |
+| --------- | ------------------------ | ----------------------------------------------------------------------------------------- |
+| name      | Fat 2 Fit                | The name of the class                                                                     |
+| type      | Cardio                   | The type of class                                                                         |
+| startTime | 2020-01-13T16:30:00.000Z | An ISO 8601 format date time that represents the start time of the class                  |
+| duration  | 1h                       | How long the class is                                                                     |
+| intensity | 8                        | A value from 1-10 that determines how hard the class is                                   |
+| location  | San Francisco            | The location of the class (Preferably in City only format? Will discuss with group later) |
+| maxSize   | 10                       | The maximum seats the class can hold (ex: only 10 people can attend this class)           |
+
+All JSON body fields are `required`
+
+<aside class="success">
+POST /classes is up and running. 
+</aside>
+
+## Get All Classes
+
+Returns a list of all classes
+
+> Example return body:
+
+```json
+[
+  {
+    "id": 4,
+    "instructor_id": 3,
+    "name": "Fat 2 Fit",
+    "type": "Cardio",
+    "startTime": "2020-01-13T16:30:00.000Z",
+    "duration": "1h",
+    "intensity": 8,
+    "location": "San Francisco",
+    "maxSize": 10
+  },
+  {
+    "id": 5,
+    "instructor_id": 3,
+    "name": "Fat2222 2 Fit",
+    "type": "Cardio",
+    "startTime": "2020-01-13T16:30:00.000Z",
+    "duration": "1h",
+    "intensity": 8,
+    "location": "San Francisco",
+    "maxSize": 10
+  }
+]
+```
+
+### HTTP Request
+
+`GET /classes`
+
+<aside class="success">
+GET /classes is up and running. 
+</aside>
+
+## Get Class By ID
+
+> Example return body:
+
+```json
+{
+  "id": 5,
+  "instructor_id": 3,
+  "name": "Fat2222 2 Fit",
+  "type": "Cardio",
+  "startTime": "2020-01-13T16:30:00.000Z",
+  "duration": "1h",
+  "intensity": 8,
+  "location": "San Francisco",
+  "maxSize": 10
+}
+```
+
+### HTTP Request
+
+`GET /classes/:id`
+
+Replace `:id` with the id (integer only)
+
+Example: `GET /classes/5`
+
+Will throw a 404 if no class with the specified id exists.
+
+<aside class="success">
+GET /classes/:id is up and running. 
+</aside>
+
+## Delete Class By ID
+
+<aside class="notice">
+Must be the instructor of the class in order to delete it. 
+</aside>
+
+Will remove/delete the class by the id specified
+
+> Example return body:
+
+```json
+{ "message": "Class deleted" }
+```
+
+### HTTP Request
+
+`DELETE /classes/:id`
+
+Replace `:id` with the id (integer only)
+
+Example: `DELETE /classes/5`
+
+Will throw a 404 if no class with the specified id exists.
+
+<aside class="success">
+DELETE /classes/:id is up and running. 
 </aside>
