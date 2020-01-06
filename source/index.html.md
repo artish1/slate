@@ -217,6 +217,7 @@ Returns a list of all classes
   {
     "id": 4,
     "instructor_id": 3,
+    "instructor_name": "test2",
     "name": "Fat 2 Fit",
     "type": "Cardio",
     "startTime": "2020-01-13T16:30:00.000Z",
@@ -228,6 +229,7 @@ Returns a list of all classes
   {
     "id": 5,
     "instructor_id": 3,
+    "instructor_name": "test2",
     "name": "Runnin' n' Gunnin' V2",
     "type": "Cardio",
     "startTime": "2020-01-13T16:30:00.000Z",
@@ -255,6 +257,7 @@ GET /classes is up and running.
 {
   "id": 5,
   "instructor_id": 3,
+  "instructor_name": "test2",
   "name": "Fat 2 Fit",
   "type": "Cardio",
   "startTime": "2020-01-13T16:30:00.000Z",
