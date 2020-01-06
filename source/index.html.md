@@ -228,7 +228,7 @@ Returns a list of all classes
   {
     "id": 5,
     "instructor_id": 3,
-    "name": "Fat2222 2 Fit",
+    "name": "Fat 2 Fit",
     "type": "Cardio",
     "startTime": "2020-01-13T16:30:00.000Z",
     "duration": "1h",
