@@ -172,7 +172,7 @@ If a non-instructor tries to access an instructor-only endpoint, it will throw a
 {
   "id": 5,
   "instructor_id": 3,
-  "name": "Fat2222 2 Fit",
+  "name": "Fat 2 Fit",
   "type": "Cardio",
   "startTime": "2020-01-13T16:30:00.000Z",
   "duration": "1h",
@@ -228,7 +228,7 @@ Returns a list of all classes
   {
     "id": 5,
     "instructor_id": 3,
-    "name": "Fat 2 Fit",
+    "name": "Runnin' n' Gunnin' V2",
     "type": "Cardio",
     "startTime": "2020-01-13T16:30:00.000Z",
     "duration": "1h",
@@ -255,7 +255,7 @@ GET /classes is up and running.
 {
   "id": 5,
   "instructor_id": 3,
-  "name": "Fat2222 2 Fit",
+  "name": "Fat 2 Fit",
   "type": "Cardio",
   "startTime": "2020-01-13T16:30:00.000Z",
   "duration": "1h",
@@ -277,6 +277,56 @@ Will throw a 404 if no class with the specified id exists.
 
 <aside class="success">
 GET /classes/:id is up and running. 
+</aside>
+
+## Update Class By ID
+
+Will update any records in the database with the provided fields in the request body.
+
+> Example request body:
+
+```json
+{
+  "name": "Runnin' n' Gunnin' V2"
+}
+```
+
+> Example return body:
+
+```json
+{
+  "updatedRecords": 1
+}
+```
+
+### HTTP Request
+
+`PUT /classes/:id`
+
+Replace `:id` with the id (integer only)
+
+Example: `PUT /classes/5`
+
+Will throw a 404 if no class with the specified id exists.
+
+### Available fields to update
+
+| Field     |
+| --------- |
+| name      |
+| type      |
+| startTime |
+| duration  |
+| intensity |
+| location  |
+| maxSize   |
+
+<aside class="notice">
+an http 500 error will be thrown with a SQLITE error message if you try to add a field that is not in the table above
+</aside>
+
+<aside class="success">
+PUT /classes/:id is up and running. 
 </aside>
 
 ## Delete Class By ID
