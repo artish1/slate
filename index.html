@@ -258,6 +258,15 @@
                   <li>
                     <a href="#delete-class-by-id" class="toc-h2 toc-link" data-title="Delete Class By ID">Delete Class By ID</a>
                   </li>
+                  <li>
+                    <a href="#get-class-attendees" class="toc-h2 toc-link" data-title="Get Class Attendees">Get Class Attendees</a>
+                  </li>
+                  <li>
+                    <a href="#add-class-attendee" class="toc-h2 toc-link" data-title="Add Class Attendee">Add Class Attendee</a>
+                  </li>
+                  <li>
+                    <a href="#remove-class-attendee" class="toc-h2 toc-link" data-title="Remove Class Attendee">Remove Class Attendee</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -637,6 +646,69 @@ Must be the instructor of the class in order to delete it.
 
 <aside class="success">
 DELETE /classes/:id is up and running. 
+</aside>
+<h2 id='get-class-attendees'>Get Class Attendees</h2>
+<p>Retrieves all the attendees of the specified class by id.</p>
+
+<blockquote>
+<p>Example return body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"devtesti"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attendee2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /classes/:id/attendees</code></p>
+
+<p>Example: <code>GET /classes/5/attendees</code></p>
+
+<aside class="success">
+GET /classes/:id/attendees is up and running. 
+</aside>
+<h2 id='add-class-attendee'>Add Class Attendee</h2>
+<p>Adds the authorized user to the list of class attendees.
+No need for a body as the token provided has all the information to add the user.</p>
+
+<blockquote>
+<p>Example return body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User added to class"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+Will throw a 400 error code along with a message if the class is full.
+</aside>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /classes/:id/attendees</code></p>
+
+<p>Example: <code>POST /classes/5/attendees</code></p>
+
+<aside class="success">
+POST /classes/:id/attendees is up and running. 
+</aside>
+<h2 id='remove-class-attendee'>Remove Class Attendee</h2>
+<p>Removes the authorized user from the list of class attendees.</p>
+
+<blockquote>
+<p>Example return body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User removed from class"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE /classes/:id/attendees</code></p>
+
+<p>Example: <code>DELETE /classes/5/attendees</code></p>
+
+<aside class="success">
+DELETE /classes/:id/attendees is up and running. 
 </aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
