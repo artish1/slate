@@ -21,10 +21,12 @@ Docs are powered by [Slate](https://github.com/lord/slate)
 
 Please talk to Mark Artishuk for any questions, comments, bugs, or feature requests that concern the API
 
-The hosted base URL for the api is: `https://www.example.com`
+### Base URL
+
+The hosted base URL for the api is: `https://anywhere-fitness-bw.herokuapp.com`
 Use this URL as a base for all routes,
 example for registration:
-`POST https://www.example.com/auth/register/`
+`POST https://anywhere-fitness-bw.herokuapp.com/auth/register/`
 
 # Authentication
 
