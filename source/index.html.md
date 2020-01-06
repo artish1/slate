@@ -356,3 +356,81 @@ Will throw a 404 if no class with the specified id exists.
 <aside class="success">
 DELETE /classes/:id is up and running. 
 </aside>
+
+## Get Class Attendees
+
+Retrieves all the attendees of the specified class by id.
+
+> Example return body
+
+```json
+[
+  {
+    "username": "devtesti",
+    "id": 7
+  },
+  {
+    "username": "attendee2",
+    "id": 21
+  }
+]
+```
+
+### HTTP Request
+
+`GET /classes/:id/attendees`
+
+Example: `GET /classes/5/attendees`
+
+<aside class="success">
+GET /classes/:id/attendees is up and running. 
+</aside>
+
+## Add Class Attendee
+
+Adds the authorized user to the list of class attendees.
+No need for a body as the token provided has all the information to add the user.
+
+> Example return body
+
+```json
+{
+  "message": "User added to class"
+}
+```
+
+<aside class="notice">
+Will throw a 400 error code along with a message if the class is full.
+</aside>
+
+### HTTP Request
+
+`POST /classes/:id/attendees`
+
+Example: `POST /classes/5/attendees`
+
+<aside class="success">
+POST /classes/:id/attendees is up and running. 
+</aside>
+
+## Remove Class Attendee
+
+Removes the authorized user from the list of class attendees.
+
+> Example return body
+
+```json
+{
+  "message": "User removed from class"
+}
+```
+
+### HTTP Request
+
+`DELETE /classes/:id/attendees`
+
+Example: `DELETE /classes/5/attendees`
+
+<aside class="success">
+DELETE /classes/:id/attendees is up and running. 
+</aside>
