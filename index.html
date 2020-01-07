@@ -238,6 +238,9 @@
                   <li>
                     <a href="#logging-in" class="toc-h2 toc-link" data-title="Logging In">Logging In</a>
                   </li>
+                  <li>
+                    <a href="#who-am-i" class="toc-h2 toc-link" data-title="Who Am I">Who Am I</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -385,7 +388,8 @@ Do not use the token in the example.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome! here's your token"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint logs the user in on correct credentials.</p>
@@ -410,6 +414,26 @@ Do not use the token in the example.
 
 <aside class="success">
 /auth/login is up and running. 
+</aside>
+<h2 id='who-am-i'>Who Am I</h2>
+<p>Retrieves information about the user with the provided token.</p>
+
+<blockquote>
+<p>Example return body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"devtesti"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+Requires authentication token 
+</aside>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /auth/whoami</code></p>
+
+<aside class="success">
+/auth/whoami is up and running. 
 </aside>
 <h1 id='classes'>Classes</h1>
 <aside class="notice">All class endpoints require Authorization</aside>
@@ -449,7 +473,7 @@ Do not use the token in the example.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <aside class="notice">Authorized user must also be an instructor</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /classes</code></p>
 <h3 id='json-body-fields-2'>JSON Body Fields</h3>
 <table><thead>
@@ -533,7 +557,7 @@ POST /classes is up and running.
     </span><span class="s2">"maxSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /classes</code></p>
 
 <aside class="success">
@@ -555,7 +579,7 @@ GET /classes is up and running.
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"maxSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /classes/:id</code></p>
 
 <p>Replace <code>:id</code> with the id (integer only)</p>
@@ -583,7 +607,7 @@ GET /classes/:id is up and running.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"updatedRecords"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>PUT /classes/:id</code></p>
 
 <p>Replace <code>:id</code> with the id (integer only)</p>
@@ -638,7 +662,7 @@ Must be the instructor of the class in order to delete it.
 <p>Example return body:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class deleted"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>DELETE /classes/:id</code></p>
 
 <p>Replace <code>:id</code> with the id (integer only)</p>
@@ -666,7 +690,7 @@ DELETE /classes/:id is up and running.
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /classes/:id/attendees</code></p>
 
 <p>Example: <code>GET /classes/5/attendees</code></p>
@@ -688,7 +712,7 @@ No need for a body as the token provided has all the information to add the user
 <aside class="notice">
 Will throw a 400 error code along with a message if the class is full.
 </aside>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /classes/:id/attendees</code></p>
 
 <p>Example: <code>POST /classes/5/attendees</code></p>
@@ -705,7 +729,7 @@ POST /classes/:id/attendees is up and running.
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User removed from class"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-10'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE /classes/:id/attendees</code></p>
 
 <p>Example: <code>DELETE /classes/5/attendees</code></p>
