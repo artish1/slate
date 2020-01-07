@@ -119,7 +119,8 @@ axios
 ```json
 {
   "message": "Welcome! here's your token",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "id": 7
 }
 ```
 
@@ -138,6 +139,31 @@ This endpoint logs the user in on correct credentials.
 
 <aside class="success">
 /auth/login is up and running. 
+</aside>
+
+## Who Am I
+
+Retrieves information about the user with the provided token.
+
+> Example return body
+
+```json
+{
+  "id": 7,
+  "username": "devtesti"
+}
+```
+
+<aside class="notice">
+Requires authentication token 
+</aside>
+
+### HTTP Request
+
+`GET /auth/whoami`
+
+<aside class="success">
+/auth/whoami is up and running. 
 </aside>
 
 # Classes
