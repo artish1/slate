@@ -150,7 +150,8 @@ Retrieves information about the user with the provided token.
 ```json
 {
   "id": 7,
-  "username": "devtesti"
+  "username": "devtesti",
+  "role_id": 2
 }
 ```
 
